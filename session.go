@@ -40,8 +40,9 @@ import (
 	"strings"
 	"sync"
 	"time"
-
+	"newtb/logger"
 	"gopkg.in/mgo.v2/bson"
+	"runtime"
 )
 
 type Mode int
@@ -465,6 +466,7 @@ func DialWithInfo(info *DialInfo) (*Session, error) {
 		return nil, err
 	}
 	session.SetMode(Strong, true)
+	logger.Infoln("Creating new mongo session %p ", session, "Trace Path ", goRoutineLogStackTrace())
 	return session, nil
 }
 
@@ -556,7 +558,8 @@ func copySession(session *Session, keepCreds bool) (s *Session) {
 	scopy.m = sync.RWMutex{}
 	scopy.creds = creds
 	s = &scopy
-	debugf("New session %p on cluster %p (copy from %p)", s, cluster, session)
+	logger.Infoln("Creating copy of the existing mongo session %p ", s, "Trace Path ", goRoutineLogStackTrace())
+	//debugf("New session %p on cluster %p (copy from %p)", s, cluster, session)
 	return s
 }
 
@@ -1612,11 +1615,35 @@ func (s *Session) Close() {
 	s.m.Lock()
 	if s.cluster_ != nil {
 		debugf("Closing session %p", s)
+		logger.Infoln("Closing mongo session %p ", s, "Trace Path ", goRoutineLogStackTrace())
 		s.unsetSocket()
 		s.cluster_.Release()
 		s.cluster_ = nil
 	}
 	s.m.Unlock()
+}
+
+func goRoutineLogStackTrace() string {
+	pc := make([]uintptr, 30)
+	n := runtime.Callers(0, pc)
+	m := make(map[string]int, n)
+	frames := runtime.CallersFrames(pc)
+	trace := ""
+	for {
+		frame, more := frames.Next()
+		if frame.Function != "" {
+			function := frame.Function
+			if(strings.Contains(function , "newtb")){
+				trace = frame.Function + ":" + strconv.Itoa(frame.Line) + ":" +  trace
+			}
+
+			m[frame.Function] = frame.Line
+		}
+		if !more {
+			break
+		}
+	}
+	return trace
 }
 
 func (s *Session) cluster() *mongoCluster {
