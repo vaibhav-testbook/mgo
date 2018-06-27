@@ -41,7 +41,7 @@ import (
 	"sync"
 	"time"
 	"newtb/logger"
-	"gopkg.in/mgo.v2/bson"
+	"mgo/bson"
 	"runtime"
 )
 
