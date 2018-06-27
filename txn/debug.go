@@ -6,7 +6,7 @@ import (
 	"sort"
 	"sync/atomic"
 
-	"mgo/bson"
+	"github.com/vaibhav-testbook/mgo/bson"
 )
 
 var (

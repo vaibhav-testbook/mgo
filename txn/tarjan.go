@@ -1,7 +1,7 @@
 package txn
 
 import (
-	"mgo/bson"
+	"github.com/vaibhav-testbook/mgo/bson"
 	"sort"
 )
 

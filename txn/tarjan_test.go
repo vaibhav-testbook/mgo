@@ -2,7 +2,7 @@ package txn
 
 import (
 	"fmt"
-	"mgo/bson"
+	"github.com/vaibhav-testbook/mgo/bson"
 	. "gopkg.in/check.v1"
 )
 

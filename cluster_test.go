@@ -35,8 +35,8 @@ import (
 	"time"
 
 	. "gopkg.in/check.v1"
-	"mgo"
-	"mgo/bson"
+	"github.com/vaibhav-testbook/mgo"
+	"github.com/vaibhav-testbook/mgo/bson"
 )
 
 func (s *S) TestNewSession(c *C) {

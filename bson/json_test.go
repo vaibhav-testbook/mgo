@@ -1,7 +1,7 @@
 package bson_test
 
 import (
-	"mgo/bson"
+	"github.com/vaibhav-testbook/mgo/bson"
 
 	. "gopkg.in/check.v1"
 	"reflect"

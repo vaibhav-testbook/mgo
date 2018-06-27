@@ -39,7 +39,7 @@ import (
 	"time"
 
 	. "gopkg.in/check.v1"
-	"mgo"
+	"github.com/vaibhav-testbook/mgo"
 )
 
 func (s *S) TestAuthLoginDatabase(c *C) {

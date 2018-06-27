@@ -28,7 +28,7 @@ package mgo_test
 
 import (
 	. "gopkg.in/check.v1"
-	"mgo"
+	"github.com/vaibhav-testbook/mgo"
 )
 
 func (s *S) TestBulkInsert(c *C) {

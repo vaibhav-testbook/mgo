@@ -34,7 +34,7 @@ import (
 	"fmt"
 	"sync"
 
-	"mgo/bson"
+	"github.com/vaibhav-testbook/mgo/bson"
 	"mgo/internal/scram"
 )
 

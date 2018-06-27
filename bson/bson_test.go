@@ -40,7 +40,7 @@ import (
 	"time"
 
 	. "gopkg.in/check.v1"
-	"mgo/bson"
+	"github.com/vaibhav-testbook/mgo/bson"
 	"gopkg.in/yaml.v2"
 )
 
