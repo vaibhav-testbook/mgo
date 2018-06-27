@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
-	"mgo/internal/json"
+	"github.com/vaibhav-testbook/mgo/internal/json"
 	"strconv"
 	"time"
 )

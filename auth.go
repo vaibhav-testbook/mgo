@@ -35,7 +35,7 @@ import (
 	"sync"
 
 	"github.com/vaibhav-testbook/mgo/bson"
-	"mgo/internal/scram"
+	"github.com/vaibhav-testbook/mgo/internal/scram"
 )
 
 type authCmd struct {
