@@ -467,12 +467,11 @@ func DialWithInfo(info *DialInfo) (*Session, error) {
 		return nil, err
 	}
 	session.SetMode(Strong, true)
-	f, err := logger.Init(TBConstants.LOG_MONGO_CONN, TBConstants.CUR_ENV_TITLE == TBConstants.ENV_PRODUCTION)
+	_, err := logger.Init(TBConstants.LOG_MONGO_CONN, TBConstants.CUR_ENV_TITLE == TBConstants.ENV_PRODUCTION)
 	if err != nil {
 		fmt.Println("Cant open file=", TBConstants.LOG_MONGO_CONN)
 		return nil, err
 	}
-	defer f.Close()
 	logger.Infoln("Creating new mongo session %p ", session, "Trace Path ", goRoutineLogStackTrace())
 	return session, nil
 }
