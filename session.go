@@ -40,7 +40,7 @@ import (
 	"strings"
 	"sync"
 	"time"
-	"newtb/logger"
+	//"newtb/logger"
 	"github.com/vaibhav-testbook/mgo/bson"
 	"runtime"
 )
@@ -466,7 +466,7 @@ func DialWithInfo(info *DialInfo) (*Session, error) {
 		return nil, err
 	}
 	session.SetMode(Strong, true)
-	logger.Infoln("MONGO CONNECTION: Creating new mongo session %p ", session, "Trace Path ", goRoutineLogStackTrace())
+	//logger.Infoln("MONGO CONNECTION: Creating new mongo session %p ", session, "Trace Path ", goRoutineLogStackTrace())
 	return session, nil
 }
 
@@ -558,7 +558,7 @@ func copySession(session *Session, keepCreds bool) (s *Session) {
 	scopy.m = sync.RWMutex{}
 	scopy.creds = creds
 	s = &scopy
-	logger.Infoln("MONGO CONNECTION: Creating copy of the existing mongo session %p ", s, "Trace Path ", goRoutineLogStackTrace())
+	//logger.Infoln("MONGO CONNECTION: Creating copy of the existing mongo session %p ", s, "Trace Path ", goRoutineLogStackTrace())
 	//debugf("New session %p on cluster %p (copy from %p)", s, cluster, session)
 	return s
 }
@@ -1615,7 +1615,7 @@ func (s *Session) Close() {
 	s.m.Lock()
 	if s.cluster_ != nil {
 		debugf("Closing session %p", s)
-		logger.Infoln("MONGO CONNECTION: Closing mongo session %p ", s, "Trace Path ", goRoutineLogStackTrace())
+		//logger.Infoln("MONGO CONNECTION: Closing mongo session %p ", s, "Trace Path ", goRoutineLogStackTrace())
 		s.unsetSocket()
 		s.cluster_.Release()
 		s.cluster_ = nil
